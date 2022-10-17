@@ -47,24 +47,24 @@ public class BankController {
         return bankService.findByCity(city);
     }
 
-    @PostMapping("/contains")
-    public List<Bank>searchByContains(@PathVariable String key)throws NullPointerException {
-        if (key == ".*Prov.*"){
-            String provinsi = key;
-            return bankService.findByProv(provinsi);
-        } else if (key == ".*Kota.*") {
-            String city = key;
-            return bankService.findByCity(city);
-        } else if (key == "^[\\p{L} \\.'\\-]+$") {
-            String name = key;
-            return bankService.findByName(name);
-        } else if (key == "\\d{6}$") {
-            int sandi = Integer.parseInt(key);
-            return bankService.findBySandi(sandi);
-
-        }
-        return searchByContains(key);
-    }
+//    @PostMapping("/contains")
+//    public List<Bank>searchByContains(@PathVariable String key)throws NullPointerException {
+//        if (key == ".*Prov.*"){
+//            String provinsi = key;
+//            return bankService.findByProv(provinsi);
+//        } else if (key == ".*Kota.*") {
+//            String city = key;
+//            return bankService.findByCity(city);
+//        } else if (key == "^[\\p{L} \\.'\\-]+$") {
+//            String name = key;
+//            return bankService.findByName(name);
+//        } else if (key == "\\d{6}$") {
+//            int sandi = Integer.parseInt(key);
+//            return bankService.findBySandi(sandi);
+//
+//        }
+//        return searchByContains(key);
+//    }
 
 
     @GetMapping("/bpr/{id}")
