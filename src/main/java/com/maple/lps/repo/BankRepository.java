@@ -1,13 +1,17 @@
 package com.maple.lps.repo;
 
-import com.maple.lps.entity.Bank;
-import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
-import org.springframework.data.repository.CrudRepository;
+import com.maple.lps.model.Bank;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
-@EnableJpaRepositories
-public interface BankRepository extends CrudRepository<Bank,Integer> {
+@Repository
+public interface BankRepository extends JpaRepository<Bank,Integer> {
 
     List<Bank> findByNameContains(String keyword);
     List<Bank> findBySandi(Integer sandi);
+    List<Bank> findByProvinsiContains(String provinsi);
+    List<Bank> findByCityContains(String city);
+
+    List<Bank>findByNameOrProvinsiOrCityContains(String name,String provinsi,String city);
 }
