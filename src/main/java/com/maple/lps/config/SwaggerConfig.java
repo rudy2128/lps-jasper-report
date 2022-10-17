@@ -23,7 +23,6 @@ import java.util.Set;
 
 @Configuration
 @EnableSwagger2
-@EnableWebMvc
 public class SwaggerConfig{
     public static final Contact DEFAULT_CONTACT= new Contact(
             "Maplecode","https://maplecode.id","anthony@maplecode.id");

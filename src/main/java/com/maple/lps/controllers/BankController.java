@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletRequest;
+import java.io.IOException;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.List;
@@ -27,7 +29,13 @@ public class BankController {
 
     }
     @PostMapping("/search/{keyword}")
-    public List<Bank>searchByName(@PathVariable String keyword) throws UnknownHostException {
+    public List<Bank>searchByName(HttpServletRequest contextRequest,
+                                  @PathVariable String keyword) throws IOException {
+        String username = null;
+        if (contextRequest.getAttribute("username") != null) {
+            username = contextRequest.getAttribute("username").toString();
+        }
+
         return bankService.findByName(keyword);
 
     }
