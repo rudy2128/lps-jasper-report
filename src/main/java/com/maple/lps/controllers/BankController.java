@@ -29,12 +29,7 @@ public class BankController {
 
     }
     @PostMapping("/search/{keyword}")
-    public List<Bank>searchByName(HttpServletRequest contextRequest,
-                                  @PathVariable String keyword) throws IOException {
-        String username = null;
-        if (contextRequest.getAttribute("username") != null) {
-            username = contextRequest.getAttribute("username").toString();
-        }
+    public List<Bank>searchByName(@PathVariable String keyword) throws IOException {
 
         return bankService.findByName(keyword);
 
