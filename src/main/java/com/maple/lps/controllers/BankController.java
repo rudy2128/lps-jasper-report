@@ -24,7 +24,7 @@ public class BankController {
 
 
     @GetMapping("/bpr")
-    public Iterable<Bank>findByAll(){
+    public Iterable<Bank>findAll(){
         return bankService.findAll();
 
     }
