@@ -28,10 +28,9 @@ public class BankController {
         return bankService.findAll();
 
     }
-    @PostMapping("/search/{keyword}")
-    public List<Bank>searchByName(@PathVariable String keyword) throws IOException {
-
-        return bankService.findByName(keyword);
+    @GetMapping("/names/{name}")
+    public List<Bank>searchByName(@PathVariable String name) throws UnknownHostException{
+        return bankService.findByName(name);
 
     }
 

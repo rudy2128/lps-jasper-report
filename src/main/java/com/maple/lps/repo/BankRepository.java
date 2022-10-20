@@ -8,7 +8,7 @@ import java.util.List;
 @Repository
 public interface BankRepository extends JpaRepository<Bank,Integer> {
 
-    List<Bank> findByNameContains(String keyword);
+    List<Bank> findByNameContains(String name);
     List<Bank> findBySandi(Integer sandi);
     List<Bank> findByProvinsiContains(String provinsi);
     List<Bank> findByCityContains(String city);

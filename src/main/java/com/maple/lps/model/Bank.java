@@ -14,6 +14,7 @@ public class Bank {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     private int sandi;
+    @Column(name = "nama_bpr")
     private String name;
     private String address;
     @Column(name = "kab_kota")

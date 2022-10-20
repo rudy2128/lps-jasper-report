@@ -23,8 +23,8 @@ public class BankService {
     public Optional<Bank> findById(Integer id){
         return bankRepository.findById(id);
     }
-    public List<Bank> findByName(String keyword){
-        return bankRepository.findByNameContains(keyword);
+    public List<Bank> findByName(String name){
+        return bankRepository.findByNameContains(name);
     }
     public List<Bank> findBySandi(Integer sandi){
         return bankRepository.findBySandi(sandi);
