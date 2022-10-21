@@ -14,15 +14,6 @@ public class LpsApplication {
 	public static void main(String[] args)throws Exception {
 		SpringApplication.run(LpsApplication.class, args);
 	}
-		@Bean
-		public WebMvcConfigurer corsConfigurer() {
-			return new WebMvcConfigurer() {
-				@Override
-				public void addCorsMappings(CorsRegistry registry) {
-					registry.addMapping("/names").allowedOrigins("http://localhost:3000");
-				}
-			};
 
-	}
 
 }

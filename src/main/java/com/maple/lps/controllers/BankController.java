@@ -2,13 +2,16 @@ package com.maple.lps.controllers;
 
 import com.maple.lps.model.Bank;
 import com.maple.lps.service.BankService;
+import io.swagger.v3.oas.annotations.headers.Header;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+@CrossOrigin
 @RestController
 public class BankController {
     private List<String>objects = new ArrayList<>();
@@ -22,7 +25,7 @@ public class BankController {
         return bankService.findAll();
 
     }
-    @GetMapping("/names/{name}")
+    @PostMapping("/names/{name}")
     public List<Bank>searchByName(@PathVariable String name) throws UnknownHostException{
         return bankService.findByName(name);
 
