@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 @RestController
-@CrossOrigin(origins = "http://192.168.18.211:8787")
+@CrossOrigin(origins = "http://localhost:3000")
 public class BankController {
     private List<String>objects = new ArrayList<>();
 
