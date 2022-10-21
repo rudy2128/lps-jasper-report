@@ -12,6 +12,6 @@ public interface BankRepository extends JpaRepository<Bank,Integer> {
     List<Bank> findBySandi(Integer sandi);
     List<Bank> findByProvinsiContains(String provinsi);
     List<Bank> findByCityContains(String city);
-
+    void deleteBySandi(Integer sandi);
     List<Bank>findByNameOrProvinsiOrCityContains(String name,String provinsi,String city);
 }

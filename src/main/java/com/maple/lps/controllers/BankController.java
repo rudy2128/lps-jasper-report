@@ -2,11 +2,14 @@ package com.maple.lps.controllers;
 
 import com.maple.lps.model.Bank;
 import com.maple.lps.service.BankService;
-import io.swagger.v3.oas.annotations.headers.Header;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import reactor.core.publisher.Mono;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.List;
@@ -21,11 +24,29 @@ public class BankController {
     BankService bankService;
 
 
+
+
+
     @GetMapping("/bpr")
-    public Iterable<Bank>findAll(){
-        return bankService.findAll();
+    public ResponseEntity<Iterable<Bank>> findAll(HttpServletResponse response){
+        HttpHeaders headers = new HttpHeaders();
+        response.setHeader("Bpr","LisBpr");
+        return ResponseEntity.ok()
+                .headers(headers)
+                .body(bankService.findAll());
 
     }
+
+    @DeleteMapping("/delete-by-sandi/{$id}")
+    public void deleteById(@RequestParam Integer id){
+        bankService.deleteById(id);
+
+    }
+    @PostMapping("/save")
+    public void saveBank(@RequestBody Bank bank){
+        bankService.saveBank(bank);
+    }
+
 
     @CrossOrigin
     @RequestMapping(method = RequestMethod.GET, path = "/names/{name}")
@@ -48,24 +69,32 @@ public class BankController {
         return bankService.findByCity(city);
     }
 
-//    @PostMapping("/contains")
-//    public List<Bank>searchByContains(@PathVariable String key)throws NullPointerException {
-//        if (key == ".*Prov.*"){
-//            String provinsi = key;
-//            return bankService.findByProv(provinsi);
-//        } else if (key == ".*Kota.*") {
-//            String city = key;
-//            return bankService.findByCity(city);
-//        } else if (key == "^[\\p{L} \\.'\\-]+$") {
-//            String name = key;
-//            return bankService.findByName(name);
-//        } else if (key == "\\d{6}$") {
-//            int sandi = Integer.parseInt(key);
-//            return bankService.findBySandi(sandi);
-//
-//        }
-//        return searchByContains(key);
-//    }
+    @GetMapping("/report")
+    public String generateReport() {
+
+        return bankService.generateReport();
+    }
+
+
+
+    @PostMapping("/contains")
+    public List<Bank>searchByContains(@PathVariable String key)throws NullPointerException {
+        if (key == ".*Prov.*"){
+            String provinsi = key;
+            return bankService.findByProv(provinsi);
+        } else if (key == ".*Kota.*") {
+            String city = key;
+            return bankService.findByCity(city);
+        } else if (key == "^[\\p{L} \\.'\\-]+$") {
+            String name = key;
+            return bankService.findByName(name);
+        } else if (key == "\\d{6}$") {
+            int sandi = Integer.parseInt(key);
+            return bankService.findBySandi(sandi);
+
+        }
+        return searchByContains(key);
+    }
 
 
     @GetMapping("/bpr/{id}")
