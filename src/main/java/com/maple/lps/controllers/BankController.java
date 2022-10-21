@@ -25,7 +25,8 @@ public class BankController {
         return bankService.findAll();
 
     }
-    @PostMapping("/names/{name}")
+    @CrossOrigin("http://com.maple.lps")
+    @RequestMapping(method = RequestMethod.GET , path = "names/{name}")
     public List<Bank>searchByName(@PathVariable String name) throws UnknownHostException{
         return bankService.findByName(name);
 
@@ -34,7 +35,6 @@ public class BankController {
     @GetMapping("/search/{sandi}")
     public List<Bank>searchSandi(@PathVariable Integer sandi) throws UnknownHostException {
         return bankService.findBySandi(sandi);
-
     }
     @PostMapping("/cari/{provinsi}")
     public List<Bank>searchByProv(@PathVariable String provinsi)throws UnknownHostException{
