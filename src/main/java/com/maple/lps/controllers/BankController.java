@@ -11,8 +11,9 @@ import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-@CrossOrigin("http://com.maple.lps")
+@CrossOrigin(maxAge = 3600)
 @RestController
+@RequestMapping
 public class BankController {
     private List<String>objects = new ArrayList<>();
 
@@ -26,7 +27,8 @@ public class BankController {
 
     }
 
-    @GetMapping("/names/{name}")
+    @CrossOrigin
+    @RequestMapping(method = RequestMethod.GET, path = "/names/{name}")
     public List<Bank>searchByName(@PathVariable String name) throws UnknownHostException{
         return bankService.findByName(name);
 

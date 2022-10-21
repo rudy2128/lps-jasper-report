@@ -10,7 +10,6 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @EnableWebMvc
 @SpringBootApplication
 public class LpsApplication {
-
 	public static void main(String[] args)throws Exception {
 		SpringApplication.run(LpsApplication.class, args);
 	}
